@@ -3,6 +3,7 @@ import BlogPage from "../Page/ClientPage/BlogPage/BlogPage";
 import DetailBlogPage from "../Page/ClientPage/BlogPage/DetailBlogPage";
 import HomePage from "../Page/ClientPage/HomePage/HomePage";
 import ServicePage from "../Page/ClientPage/ServicesPage/ServicePage";
+import DetailTour from "../Page/ClientPage/TourPackagePage/DetailTour";
 import TourPackagePage from "../Page/ClientPage/TourPackagePage/TourPackagePage";
 import RouterLink from "../Until/RouterLink";
 
@@ -30,5 +31,9 @@ export const clientRoute=[
     {
         path: RouterLink.DetailBlog,
         element: DetailBlogPage
+    },
+    {
+        path: RouterLink.DetailTour,
+        element: DetailTour
     }
 ]

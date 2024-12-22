@@ -1,10 +1,11 @@
-import React from 'react';
 import package1 from '@/assets/img/package-1.jpg';
 import package2 from '@/assets/img/package-2.jpg';
 import package3 from '@/assets/img/package-3.jpg';
 import package4 from '@/assets/img/package-4.jpg';
 import package5 from '@/assets/img/package-5.jpg';
 import package6 from '@/assets/img/package-6.jpg';
+import { Link } from 'react-router-dom';
+import RouterLink from "@/Until/RouterLink";
 const TourPackages = () => {
     const packages = [
         {
@@ -87,7 +88,7 @@ const TourPackages = () => {
                                         <small className="m-0"><i className="fa fa-calendar-alt text-primary mr-2"></i>{pkg.duration}</small>
                                         <small className="m-0"><i className="fa fa-user text-primary mr-2"></i>{pkg.persons}</small>
                                     </div>
-                                    <a className="h5 text-decoration-none" href="">{pkg.title}</a>
+                                    <Link className="h5 text-decoration-none" to={RouterLink.DetailTour}>{pkg.title}</Link>
                                     <div className="border-top mt-4 pt-4">
                                         <div className="d-flex justify-content-between">
                                             <h6 className="m-0"><i className="fa fa-star text-primary mr-2"></i>{pkg.rating} <small>({pkg.reviews})</small></h6>

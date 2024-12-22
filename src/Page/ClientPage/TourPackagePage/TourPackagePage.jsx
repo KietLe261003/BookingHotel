@@ -1,4 +1,3 @@
-import React from 'react';
 import TourPackages from '../../../Components/TourPackages';
 import DestinationSection from '../../../Components/DestinationSection';
 

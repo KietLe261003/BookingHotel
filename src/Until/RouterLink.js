@@ -7,7 +7,7 @@ const RouterLink = {
     Blog: '/blog',
     Contract: '/contract',
     DetailBlog: '/detailblog/:id',
-    
+    DetailTour: '/detailtour/:id',
 };
 
 export default RouterLink;
