@@ -1,9 +1,13 @@
 import { Link, useLocation } from "react-router-dom";
 import { siteMenu } from "../../../Comomon/Config/SiteMenu";
-
+import { useAppDispatch, useAppSelector} from "@/Hooks/Store";
+import { setOpenModal } from "../../../Redux/Slice";
+import { useEffect } from "react";
+import FormLogin from '@/Components/FormLogin.jsx';
 function NavBarSection() {
   const location = useLocation();
   const currentUrl = location.pathname;
+
   return (
     <div className="container-fluid position-relative nav-bar p-0">
       <div
@@ -40,6 +44,7 @@ function NavBarSection() {
           </div>
         </nav>
       </div>
+      <FormLogin></FormLogin>
     </div>
   );
 }

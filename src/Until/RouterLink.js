@@ -8,6 +8,10 @@ const RouterLink = {
     Contract: '/contract',
     DetailBlog: '/detailblog/:id',
     DetailTour: '/detailtour/:id',
+    Profile: '/profile',
+    View360: '/view360/:id',
+    Login: 'login',
+    Logup: 'logup',
 };
 
 export default RouterLink;

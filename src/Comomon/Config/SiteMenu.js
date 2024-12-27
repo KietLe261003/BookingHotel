@@ -22,7 +22,7 @@ export const siteMenu = [
         href: RouterLink.Blog,
     },
     {
-        name: 'Contact',
-        href: RouterLink.Contract,
+        name: 'Profile',
+        href: RouterLink.Profile,
     },
 ];

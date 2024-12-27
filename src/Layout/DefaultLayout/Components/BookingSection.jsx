@@ -9,10 +9,10 @@ function BookingSection() {
                 <div className="col-md-3">
                   <div className="mb-3 mb-md-0">
                     <select className="custom-select px-4" style={{ height: '47px' }}>
-                      <option value={'0'}>Destination</option>
-                      <option value="1">Destination 1</option>
-                      <option value="2">Destination 2</option>
-                      <option value="3">Destination 3</option>
+                      <option defaultValue={'0'}>Destination</option>
+                      <option defaultValue="1">Destination 1</option>
+                      <option defaultValue="2">Destination 2</option>
+                      <option defaultValue="3">Destination 3</option>
                     </select>
                   </div>
                 </div>
@@ -45,10 +45,10 @@ function BookingSection() {
                 <div className="col-md-3">
                   <div className="mb-3 mb-md-0">
                     <select className="custom-select px-4" style={{ height: '47px' }}>
-                      <option value={'0'} >Duration</option>
-                      <option value="1">Duration 1</option>
-                      <option value="2">Duration 2</option>
-                      <option value="3">Duration 3</option>
+                      <option defaultValue={'0'} >Duration</option>
+                      <option defaultValue="1">Duration 1</option>
+                      <option defaultValue="2">Duration 2</option>
+                      <option defaultValue="3">Duration 3</option>
                     </select>
                   </div>
                 </div>

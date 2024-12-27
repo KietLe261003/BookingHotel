@@ -88,7 +88,7 @@ const TourPackages = () => {
                                         <small className="m-0"><i className="fa fa-calendar-alt text-primary mr-2"></i>{pkg.duration}</small>
                                         <small className="m-0"><i className="fa fa-user text-primary mr-2"></i>{pkg.persons}</small>
                                     </div>
-                                    <Link className="h5 text-decoration-none" to={RouterLink.DetailTour}>{pkg.title}</Link>
+                                    <Link className="h5 text-decoration-none" to={"/detailtour/2"}>{pkg.title}</Link>
                                     <div className="border-top mt-4 pt-4">
                                         <div className="d-flex justify-content-between">
                                             <h6 className="m-0"><i className="fa fa-star text-primary mr-2"></i>{pkg.rating} <small>({pkg.reviews})</small></h6>

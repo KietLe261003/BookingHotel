@@ -33,9 +33,9 @@ const RegistrationComponent = () => {
                   <div className="form-group">
                     <select className="custom-select px-4" style={{ height: '47px' }}>
                       <option selected>Select a destination</option>
-                      <option value="1">destination 1</option>
-                      <option value="2">destination 1</option>
-                      <option value="3">destination 1</option>
+                      <option defaultValue="1">destination 1</option>
+                      <option defaultValue="2">destination 1</option>
+                      <option defaultValue="3">destination 1</option>
                     </select>
                   </div>
                   <div>
