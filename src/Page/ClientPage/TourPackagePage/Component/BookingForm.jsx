@@ -14,7 +14,9 @@ const BookingForm = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   return (
     <div>
-      <Button onClick={onOpen}>Open Modal</Button>
+      <div className="action">
+              <button type="button" onClick={onOpen}>Đặt phòng ngay</button>
+            </div>
       <Modal blockScrollOnMount={true} scrollBehavior={'inside'} isOpen={isOpen} onClose={onClose}>
         <ModalOverlay />
         <ModalContent>

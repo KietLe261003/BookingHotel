@@ -68,9 +68,6 @@ const DetailTour = () => {
               <p>Recommended by</p>
               <h3>Andrew Palmer</h3>
             </div>
-            <div className="action">
-              <button type="button">Đặt phòng ngay</button>
-            </div>
             <BookingForm></BookingForm>
           </div>
         </div>
