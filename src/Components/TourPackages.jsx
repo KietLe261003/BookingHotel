@@ -6,69 +6,23 @@ import package5 from '@/assets/img/package-5.jpg';
 import package6 from '@/assets/img/package-6.jpg';
 import { Link } from 'react-router-dom';
 import RouterLink from "@/Until/RouterLink";
+import { useEffect, useState } from "react";
+import { hotelServices } from '@/Service/HotelService';
+import { renderName } from '../Until/RenderName';
 const TourPackages = () => {
-    const packages = [
-        {
-            imgSrc: package1,
-            location: "Thailand",
-            duration: "3 days",
-            persons: "2 Person",
-            title: "Discover amazing places of the world with us",
-            rating: 4.5,
-            reviews: 250,
-            price: "$350"
-        },
-        {
-            imgSrc: package2,
-            location: "Thailand",
-            duration: "3 days",
-            persons: "2 Person",
-            title: "Discover amazing places of the world with us",
-            rating: 4.5,
-            reviews: 250,
-            price: "$350"
-        },
-        {
-            imgSrc: package3,
-            location: "Thailand",
-            duration: "3 days",
-            persons: "2 Person",
-            title: "Discover amazing places of the world with us",
-            rating: 4.5,
-            reviews: 250,
-            price: "$350"
-        },
-        {
-            imgSrc: package4,
-            location: "Thailand",
-            duration: "3 days",
-            persons: "2 Person",
-            title: "Discover amazing places of the world with us",
-            rating: 4.5,
-            reviews: 250,
-            price: "$350"
-        },
-        {
-            imgSrc: package5,
-            location: "Thailand",
-            duration: "3 days",
-            persons: "2 Person",
-            title: "Discover amazing places of the world with us",
-            rating: 4.5,
-            reviews: 250,
-            price: "$350"
-        },
-        {
-            imgSrc: package6,
-            location: "Thailand",
-            duration: "3 days",
-            persons: "2 Person",
-            title: "Discover amazing places of the world with us",
-            rating: 4.5,
-            reviews: 250,
-            price: "$350"
-        },
-    ];
+    const [packages,setPackages]=useState([]);
+    const getAllHotel = async () => {
+        try {
+          const res = await hotelServices.getAllHotel();
+          setPackages(res?.data)
+        } catch (error) {
+          alert("lỗi");
+          console.log("Lỗi: ", error);
+        }
+      };
+      useEffect(() => {
+        getAllHotel();
+      }, []);
 
     return (
         <div className="container-fluid py-5">
@@ -81,18 +35,20 @@ const TourPackages = () => {
                     {packages.map((pkg, index) => (
                         <div key={index} className="col-lg-4 col-md-6 mb-4">
                             <div className="package-item bg-white mb-2">
-                                <img className="img-fluid" src={pkg.imgSrc} alt="" />
+                                <img className="img-fluid" src={pkg.imageUrls[0]} alt="" />
                                 <div className="p-4">
                                     <div className="d-flex justify-content-between mb-3">
-                                        <small className="m-0"><i className="fa fa-map-marker-alt text-primary mr-2"></i>{pkg.location}</small>
-                                        <small className="m-0"><i className="fa fa-calendar-alt text-primary mr-2"></i>{pkg.duration}</small>
-                                        <small className="m-0"><i className="fa fa-user text-primary mr-2"></i>{pkg.persons}</small>
+                                        <small className="m-0"><i className="fa fa-map-marker-alt text-primary mr-2"></i>{pkg.city}</small>
+                                        <small className="m-0"><i className="fa fa-calendar-alt text-primary mr-2"></i>1 night</small>
+                                        <small className="m-0"><i className="fa fa-user text-primary mr-2"></i>2</small>
                                     </div>
-                                    <Link className="h5 text-decoration-none" to={"/detailtour/2"}>{pkg.title}</Link>
+                                    <div className='min-h-[55px] h-[55px]'>
+                                        <Link className="h5 text-decoration-none" to={`/detailtour/${pkg.hotelId}`}>{renderName(pkg.name,50)}</Link>
+                                    </div>
                                     <div className="border-top mt-4 pt-4">
                                         <div className="d-flex justify-content-between">
-                                            <h6 className="m-0"><i className="fa fa-star text-primary mr-2"></i>{pkg.rating} <small>({pkg.reviews})</small></h6>
-                                            <h5 className="m-0">{pkg.price}</h5>
+                                            <h6 className="m-0"><i className="fa fa-star text-primary mr-2"></i>{pkg.rating} <small>(200)</small></h6>
+                                            <h5 className="m-0">{pkg.price} vnđ</h5>
                                         </div>
                                     </div>
                                 </div>

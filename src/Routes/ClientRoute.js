@@ -46,6 +46,6 @@ export const clientRoute=[
     },
     {
         path: RouterLink.View360,
-        element: View360Component
+        element: View360Page
     },
 ]
