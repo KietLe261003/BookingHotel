@@ -8,5 +8,9 @@ export const hotelServices={
     getHotelById: async(id)=>{
         const response = await request.get(`/hotelservice/${id}`);
         return response.data;
+    },
+    getRoomByHotelId: async(id)=>{
+        const response = await request.get(`/hotelservice/getallroom/${id}`);
+        return response.data;
     }
 }

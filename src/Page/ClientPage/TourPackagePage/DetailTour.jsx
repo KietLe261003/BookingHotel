@@ -5,24 +5,45 @@ import ListComment from "../../../Components/ListComment";
 import CreateComment from "../../../Components/CreateComment";
 import { useNavigate, useParams } from "react-router-dom";
 import BookingForm from "./Component/BookingForm";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { hotelServices } from "../../../Service/HotelService";
+import TableRoom from "./Component/TableRoom";
 const DetailTour = () => {
   const {id}=useParams();
   const navigate = useNavigate();
   const [hotel,setHotel]=useState(null);
+  const [rooms,setRooms]=useState([]);
+  const tableRoomRef = useRef(null);
+
+  const scrollToTableRoom = () => {
+    if (tableRoomRef.current) {
+      tableRoomRef.current.scrollIntoView({ behavior: "smooth" });
+    }
+  };
   const getHotelById = async ()=>{
     try {
       const res = await hotelServices.getHotelById(id);
       setHotel(res?.data);
-      console.log(res.data);
     } catch (error) {
-      console.log("Lỗi: ",error)
+      console.log("Lỗi: ",error);
     }
   }
+  const getAllRoom = async ()=>{
+    try {
+      const res = await hotelServices.getRoomByHotelId(id);
+      console.log(res.data);
+      setRooms(res?.data);
+    } catch (error) {
+      console.log("Lỗi: ",error);
+    }
+  }
+
+
   useEffect(()=>{
     getHotelById();
+    getAllRoom();
   },[id]);
+  
   return (
     hotel && <div className="container-fluid px-5 flex flex-col">
       <main className="mb-12">
@@ -37,7 +58,7 @@ const DetailTour = () => {
                   height={'100%'}
                 />
               </div>
-              <button class="py-2.5 px-6 rounded-lg text-sm font-medium text-white bg-teal-600 m-3" onClick={()=> navigate(`/view360/${hotel.hotelId}`)}>View 360</button>
+              <button className="py-2.5 px-6 rounded-lg text-sm font-medium text-white bg-teal-600 m-3" onClick={()=> navigate(`/view360/${hotel.hotelId}`)}>View 360</button>
             </div>
             <div className="half">
               <div className="featured_text flex flex-col items-start">
@@ -72,7 +93,7 @@ const DetailTour = () => {
                 </ul>
                 <span>(64 reviews)</span>
               </div>
-              <Utilities></Utilities>
+              <Utilities amenities={hotel.amenities}></Utilities>
             </div>
           </div>
           <div className="card__footer">
@@ -80,10 +101,16 @@ const DetailTour = () => {
               <p>Recommended by</p>
               <h3>Andrew Palmer</h3>
             </div>
-            <BookingForm></BookingForm>
+            <div className="action">
+              <button type="button" onClick={scrollToTableRoom}>Chọn phòng</button>
+            </div>
           </div>
         </div>
       </main>
+      
+      <div ref={tableRoomRef} className="py-5">
+          <TableRoom rooms={rooms}></TableRoom>
+        </div>
       <ListComment></ListComment>
       <CreateComment></CreateComment>
     </div>
