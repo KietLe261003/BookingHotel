@@ -16,7 +16,7 @@ const TourPackages = () => {
           const res = await hotelServices.getAllHotel();
           setPackages(res?.data)
         } catch (error) {
-          alert("lỗi");
+          //alert("lỗi");
           console.log("Lỗi: ", error);
         }
       };

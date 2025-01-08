@@ -3,7 +3,8 @@ import "./App.css";
 import { clientRoute } from "./Routes/ClientRoute";
 import DefaultLayout from "./Layout/DefaultLayout/DefaultLayout";
 import { useEffect } from "react";
-import { authRoute } from "./Routes/AuthRoute";
+import { adminRoute } from "./Routes/AdminRoute";
+import AdminLayout from "./Layout/AdminLayout/AdminLayout";
 function App() {
   const { pathname } = useLocation();
   useEffect(() => {
@@ -22,8 +23,8 @@ function App() {
           );
         })}
       </Route>
-      <Route path="/auth">
-        {authRoute.map((route, index) => {
+      <Route path="/admin" element={<AdminLayout/>}>
+        {adminRoute.map((route, index) => {
           return (
             <Route
               key={index}

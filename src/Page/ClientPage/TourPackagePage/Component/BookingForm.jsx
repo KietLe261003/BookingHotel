@@ -23,7 +23,7 @@ const BookingForm = ({ room }) => {
     email: Yup.string()
       .email("Invalid email address")
       .required("Email is required"),
-    phone: Yup.string()
+    phoneNumber: Yup.string()
       .matches(/^[0-9]+$/, "Phone number must be digits only")
       .required("Phone number is required"),
     dateCheckin: Yup.date().required("Check-in date is required"),
@@ -66,7 +66,7 @@ const BookingForm = ({ room }) => {
       roomId: room.roomId,
       name: "",
       email: "",
-      phone: "",
+      phoneNumber: "",
       dateCheckin: "",
       dateCheckout: "",
       roomAmount: 1,
@@ -154,10 +154,10 @@ const BookingForm = ({ room }) => {
                   type="tel"
                   placeholder="Enter your phone number"
                   required
-                  {...formik.getFieldProps("phone")}
+                  {...formik.getFieldProps("phoneNumber")}
                 />
                 {formik.touched.phone && formik.errors.phone ? (
-                  <p className="text-red-500 text-sm">{formik.errors.phone}</p>
+                  <p className="text-red-500 text-sm">{formik.errors.phoneNumber}</p>
                 ) : null}
               </div>
               <div className="mb-4">
