@@ -1,111 +1,109 @@
-import React from 'react';
-import { Table, Divider, Tag } from 'antd';
+import React, { useEffect, useState } from "react";
+import { Table, Divider, Tag, notification } from "antd";
+import { UserService } from "../../../Service/UserService";
 const ManagementAccountPage = () => {
-    const columns = [
-        {
-          title: 'Name',
-          dataIndex: 'name',
-          key: 'name',
-          render: text => <a>{text}</a>,
-        },
-        {
-          title: 'Age',
-          dataIndex: 'age',
-          key: 'age',
-        },
-        {
-          title: 'Address',
-          dataIndex: 'address',
-          key: 'address',
-        },
-        {
-          title: 'Status',
-          key: 'status',
-          dataIndex: 'status',
-          render: tags => (
-            <span>
-              {tags.map(tag => {
-                let color = 'geekblue';
-                switch (tag) {
-                  case 'Active':
-                      color = 'green'
-                    break;
-                  case 'Inactive':
-                      color = 'red'
-                    break;
-                  case 'Banned':
-                      color = 'orange'
-                      break;
-                  default:
-                    break;
-                }
-                return (
-                  <Tag color={color} key={'volcano'}>
-                    {tag}
-                  </Tag>
-                );
-              })}
-            </span>
-          ),
-        },
-        {
-          title: 'Role',
-          dataIndex: 'role',
-          key: 'role',
-          render: text => <a>{text}</a>,
-        },
-        {
-          title: 'Action',
-          key: 'action',
-          render: (text, record) => (
-            <span>
-              <a>Edit</a>
-              <Divider type="vertical" />
-              <a>Delete</a>
-            </span>
-          ),
-        },
-      ];
-      
-      const data = [
-        {
-          key: '1',
-          name: 'John Brown',
-          age: 32,
-          address: 'New York No. 1 Lake Park',
-          status: ['Active'],
-          role: 'Admin'
-        },
-        {
-          key: '2',
-          name: 'Jim Green',
-          age: 42,
-          address: 'London No. 1 Lake Park',
-          status: ['Inactive'],
-          role: 'User'
-        },
-        {
-          key: '3',
-          name: 'Joe Black',
-          age: 32,
-          address: 'Sidney No. 1 Lake Park',
-          status: ['Banned'],
-          role: 'Staff'
-        },
-        {
-          key: '4',
-          name: 'Joe Black',
-          age: 32,
-          address: 'Sidney No. 1 Lake Park',
-          status: ['Verified'],
-          role: 'Admin'
-        },
-      ];
-    return (
-        <div>
-            <Table columns={columns} dataSource={data}></Table>
-        </div>
-    );
+  const columns = [
+    {
+      title: "Full Name",
+      dataIndex: "fullName",
+      key: "fullName",
+      render: (text) => <a>{text}</a>,
+    },
+    {
+      title: "Email",
+      dataIndex: "email",
+      key: "email",
+    },
+    {
+      title: "Phone Number",
+      dataIndex: "phoneNumber",
+      key: "phoneNumber",
+    },
+    {
+      title: "Gender",
+      dataIndex: "gender",
+      key: "gender",
+      render: (content)=>{
+        return <span>{!content? 'Nữ':'Nam'}</span>
+      }
+    },
+    {
+      title: "Address",
+      dataIndex: "address",
+      key: "address",
+    },
+    {
+      title: "Status",
+      key: "accountStatus",
+      dataIndex: "accountStatus",
+      render: (tags) => {
+        let color = "geekblue";
+        switch (tags) {
+          case "Active":
+            color = "green";
+            break;
+          case "Inactive":
+            color = "red";
+            break;
+          case "Banned":
+            color = "orange";
+            break;
+          default:
+            break;
+        }
+        return <Tag color={color}>{tags}</Tag>;
+      },
+    },
+    {
+      title: "Role",
+      dataIndex: "role",
+      key: "role",
+      render: (text) => <a>{text}</a>,
+    },
+    {
+      title: "Action",
+      key: "action",
+      render: (text, record) => (
+        <span>
+          <a>Edit</a>
+          <Divider type="vertical" />
+          <a>Delete</a>
+        </span>
+      ),
+    },
+  ];
+  // const data = [
+  //   {
+  //     fullName: "John Brown",
+  //     email: "kietle@gmail.com",
+  //     phoneNumber: "012345678",
+  //     address: "New York No. 1 Lake Park",
+  //     gender: true,
+  //     accountStatus: "Active",
+  //     role: "Admin",
+  //   },
+  // ];
+  const [listData,setListData]=useState([]);
+  const getAllUser=async ()=>{
+    try {
+      const res = await UserService.getAllUser();
+      setListData(res.data);
+    } catch (error) {
+      notification.error({message: "Lỗi lấy toàn bộ user"});
+    }
+  }
+  useEffect(()=>{
+    getAllUser();
+  },[])
+  return (
+    <div>
+      <Table
+        columns={columns}
+        dataSource={listData}
+        pagination={{ pageSize: 5 }}
+      ></Table>
+    </div>
+  );
 };
 
 export default ManagementAccountPage;

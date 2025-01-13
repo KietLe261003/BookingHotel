@@ -1,46 +1,17 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Table, Divider, Tag } from 'antd';
 import { Link } from "react-router-dom";
 import RouterLinkAdmin from "../../../Until/RouterLinkAdmin";
+import { hotelServices } from "../../../Service/HotelService";
 const HotelPage = () => {
   const data = [
     {
-      key: "1",
       id: "67777c2a237cfb43c08c7694",
       name: "New york center",
-      phone: "0337612627",
+      phoneNumber: "0337612627",
       email: "huyencute@gmail.com",
       price: 100000,
-      city: "Vũng Tàu",
-      status: ["Active"],
-    },
-    {
-      key: "2",
-      id: "67777c2a237cfb43c08c7694",
-      name: "New york center",
-      phone: "0337612627",
-      email: "huyencute@gmail.com",
-      price: 100000,
-      city: "Vũng Tàu",
-      status: ["Active"],
-    },
-    {
-      key: "3",
-      id: "67777c2a237cfb43c08c7694",
-      name: "New york center",
-      phone: "0337612627",
-      email: "huyencute@gmail.com",
-      price: 100000,
-      city: "Vũng Tàu",
-      status: ["Active"],
-    },
-    {
-      key: "4",
-      id: "67777c2a237cfb43c08c7694",
-      name: "New york center",
-      phone: "0337612627",
-      email: "huyencute@gmail.com",
-      price: 100000,
+      address: "123 Nguyễn Tri Phương Vũng Tàu",
       city: "Vũng Tàu",
       status: ["Active"],
     },
@@ -61,8 +32,8 @@ const HotelPage = () => {
     },
     {
       title: "Phone",
-      dataIndex: "phone",
-      key: "phone",
+      dataIndex: "phoneNumber",
+      key: "phoneNumber",
     },
     {
       title: "Email",
@@ -75,19 +46,22 @@ const HotelPage = () => {
       key: "price",
     },
     {
+      title: "Địa chỉ",
+      dataIndex: "address",
+      key: "address",
+    },
+    {
       title: "City",
       dataIndex: "city",
       key: "city",
     },
     {
-      title: "Status",
-      key: "status",
-      dataIndex: "status",
-      render: (tags) => (
-        <span>
-          {tags.map((tag) => {
+          title: "Status",
+          key: "status",
+          dataIndex: "status",
+          render: (tags) => {
             let color = "geekblue";
-            switch (tag) {
+            switch (tags) {
               case "Active":
                 color = "green";
                 break;
@@ -100,15 +74,9 @@ const HotelPage = () => {
               default:
                 break;
             }
-            return (
-              <Tag color={color} key={"volcano"}>
-                {tag}
-              </Tag>
-            );
-          })}
-        </span>
-      ),
-    },
+            return <Tag color={color}>{tags}</Tag>;
+          },
+        },
     {
       title: "Action",
       key: "action",
@@ -121,9 +89,21 @@ const HotelPage = () => {
       ),
     },
   ];
+  const [listData,setListData]=useState([]);
+  const getAllHotel=async ()=>{
+    try {
+      const res = await hotelServices.getAllHotel();
+      setListData(res.data);
+    } catch (error) {
+      notification.error({message: "Lỗi lấy toàn bộ hotel"});
+    }
+  }
+  useEffect(()=>{
+    getAllHotel();
+  },[])
   return (
     <>
-        <Table columns={columns} dataSource={data}></Table>
+        <Table columns={columns} dataSource={listData}></Table>
     </>
   );
 };

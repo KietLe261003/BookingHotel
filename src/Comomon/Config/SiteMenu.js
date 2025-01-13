@@ -21,8 +21,4 @@ export const siteMenu = [
         name: 'Blogs',
         href: RouterLink.Blog,
     },
-    {
-        name: 'Profile',
-        href: RouterLink.Profile,
-    },
 ];

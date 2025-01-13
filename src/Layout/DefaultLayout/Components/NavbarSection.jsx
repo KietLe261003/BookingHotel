@@ -1,13 +1,35 @@
 import { Link, useLocation } from "react-router-dom";
 import { siteMenu } from "../../../Comomon/Config/SiteMenu";
-import { useAppDispatch, useAppSelector} from "@/Hooks/Store";
+import { useAppDispatch, useAppSelector } from "@/Hooks/Store";
 import { setOpenModal } from "../../../Redux/Slice";
 import { useEffect } from "react";
-import FormLogin from '@/Components/FormLogin.jsx';
+import FormLogin from "@/Components/FormLogin.jsx";
+import RouterLink from "../../../Until/RouterLink";
+import { useAuth } from "../../../Comomon/Context/AuthContext";
 function NavBarSection() {
   const location = useLocation();
   const currentUrl = location.pathname;
-
+  const { token } = useAuth();
+   const dispath = useAppDispatch();
+  const renderLogin = () => {
+    if (token) {
+      return (
+        <Link
+          to={RouterLink.Profile}
+          className={`nav-item nav-link ${
+            currentUrl === RouterLink.Profile && "active"
+          }`}
+          style={{ fontWeight: "bold" }}
+        >
+          Profile
+        </Link>
+      );
+    } else {
+      return (
+        <FormLogin></FormLogin>
+      );
+    }
+  };
   return (
     <div className="container-fluid position-relative nav-bar p-0">
       <div
@@ -28,23 +50,26 @@ function NavBarSection() {
           >
             <span className="navbar-toggler-icon"></span>
           </button>
-          <div
-            className=" navbar-collapse justify-content-between px-3"
-           
-          >
+          <div className=" navbar-collapse justify-content-between px-3">
             <div className="navbar-nav ml-auto py-0">
-              {
-                siteMenu.map((item,index)=>(
-                  <Link to={item.href} key={index} className={`nav-item nav-link ${currentUrl===item.href && 'active'}`} style={{fontWeight: 'bold'}}>
-                    {item.name}
-                  </Link>
-                ))
-              }
+              {siteMenu.map((item, index) => (
+                <Link
+                  to={item.href}
+                  key={index}
+                  className={`nav-item nav-link ${
+                    currentUrl === item.href && "active"
+                  }`}
+                  style={{ fontWeight: "bold" }}
+                >
+                  {item.name}
+                </Link>
+              ))}
+              {renderLogin()}
             </div>
           </div>
         </nav>
       </div>
-      <FormLogin></FormLogin>
+      
     </div>
   );
 }

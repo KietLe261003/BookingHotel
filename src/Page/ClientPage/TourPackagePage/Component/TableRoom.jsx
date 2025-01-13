@@ -93,7 +93,6 @@ const TableRoom = ({ rooms }) => {
           </tbody>
         </table>
       </div>
-      <SignupForm></SignupForm>
     </>
   );
 };
