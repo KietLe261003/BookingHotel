@@ -12,5 +12,9 @@ export const hotelServices={
     getRoomByHotelId: async(id)=>{
         const response = await request.get(`/hotelservice/getallroom/${id}`);
         return response.data;
+    },
+    deleteHotel: async(id)=>{
+        const response = await request.delete(`/hotelservice/${id}`);
+        return response.data;
     }
 }

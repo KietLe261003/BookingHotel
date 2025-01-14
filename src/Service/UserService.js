@@ -12,8 +12,24 @@ export const UserService={
         const res=await request.post("/userservice/auth/checktoken",dataRequest);
         return res.data;
     },
+    findUserByid: async(id)=>{
+        const res = await request.get(`/userservice/${id}`);
+        return res.data;
+    },
     getAllUser: async()=>{
         const res = await request.get("/userservice");
+        return res.data;
+    },
+    createUser: async(data)=>{
+        const res = await request.post("/userservice",data);
+        return res.data;
+    },
+    updateUser: async(id,data)=>{
+        const res = await request.put(`/userservice/${id}`,data);
+        return res.data;
+    },
+    deleteUser: async(id)=>{
+        const res = await request.delete(`/userservice/${id}`);
         return res.data;
     }
 }

@@ -1,8 +1,28 @@
 import React, { useEffect, useState } from "react";
 import { Table, Divider, Tag, notification } from "antd";
 import { UserService } from "../../../Service/UserService";
+import CreateForm from "./Components/CreateForm";
+import UpdateForm from "./Components/UpdateForm";
+import DeleteForm from "./Components/DeleteForm";
+
 const ManagementAccountPage = () => {
+  const [listData,setListData]=useState([]);
+  const [selectedUserId, setSelectedUserId] = useState(null);
+  const getAllUser=async ()=>{
+    try {
+      const res = await UserService.getAllUser();
+      setListData(res.data);
+    } catch (error) {
+      notification.error({message: "Lỗi lấy toàn bộ user"});
+    }
+  }
   const columns = [
+    {
+      title: "Id",
+      dataIndex: "userId",
+      key: "userId",
+      render: (text) => <a>{text}</a>,
+    },
     {
       title: "Full Name",
       dataIndex: "fullName",
@@ -65,38 +85,35 @@ const ManagementAccountPage = () => {
       key: "action",
       render: (text, record) => (
         <span>
-          <a>Edit</a>
-          <Divider type="vertical" />
-          <a>Delete</a>
+          <a
+            onClick={() => {
+              setSelectedUserId(record.userId); // Cập nhật userId khi click
+            }}
+          >
+            <UpdateForm
+              getAllUser={getAllUser}
+              userId={selectedUserId}
+            />
+          </a>
+          <span> | </span>
+          <a
+            onClick={() => {
+              setSelectedUserId(record.userId); // Cập nhật userId khi click
+            }}
+          >
+            <DeleteForm getAllUser={getAllUser}
+              userId={selectedUserId} />
+          </a>
         </span>
       ),
     },
   ];
-  // const data = [
-  //   {
-  //     fullName: "John Brown",
-  //     email: "kietle@gmail.com",
-  //     phoneNumber: "012345678",
-  //     address: "New York No. 1 Lake Park",
-  //     gender: true,
-  //     accountStatus: "Active",
-  //     role: "Admin",
-  //   },
-  // ];
-  const [listData,setListData]=useState([]);
-  const getAllUser=async ()=>{
-    try {
-      const res = await UserService.getAllUser();
-      setListData(res.data);
-    } catch (error) {
-      notification.error({message: "Lỗi lấy toàn bộ user"});
-    }
-  }
   useEffect(()=>{
     getAllUser();
   },[])
   return (
     <div>
+      <CreateForm getAllUser={getAllUser}></CreateForm>
       <Table
         columns={columns}
         dataSource={listData}
