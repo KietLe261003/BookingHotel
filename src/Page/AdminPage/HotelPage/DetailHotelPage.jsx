@@ -17,7 +17,7 @@ const DetailHotelPage = () => {
         <div className="mr-0 md:mr-8 mb-6 md:mb-0">
           <img
             className="w-1/2 md:w-full mx-auto max-w-[700px]"
-            src="https://l13.alamy.com/360/PK8P6M/hotel-pariz-PK8P6M.jpg"
+            src="http://localhost:8082/Uploads/a2ffa19a-79c3-4a7c-a1c9-a4e832c4c528_maxresdefault.jpg"
             alt="can_help_banner"
           />
         </div>

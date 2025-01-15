@@ -1,3 +1,4 @@
+import axios from "axios";
 import { request } from "../Comomon/Config/Request"
 
 export const UserService={
@@ -9,7 +10,7 @@ export const UserService={
         const dataRequest={
             token
         }
-        const res=await request.post("/userservice/auth/checktoken",dataRequest);
+        const res = await axios.post("http://localhost:8080/api/userservice/auth/checktoken",dataRequest);
         return res.data;
     },
     findUserByid: async(id)=>{

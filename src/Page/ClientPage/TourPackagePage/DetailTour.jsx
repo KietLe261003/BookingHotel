@@ -8,6 +8,7 @@ import BookingForm from "./Component/BookingForm";
 import { useEffect, useRef, useState } from "react";
 import { hotelServices } from "../../../Service/HotelService";
 import TableRoom from "./Component/TableRoom";
+const URL_IMAGE=import.meta.env.VITE_IMAGE_URL;
 const DetailTour = () => {
   const {id}=useParams();
   const navigate = useNavigate();
@@ -52,7 +53,7 @@ const DetailTour = () => {
             <div className="half">
               <div className="image">
                 <img
-                  src={hotel?.imageUrls[0]}
+                  src={URL_IMAGE+hotel?.imageUrls[0]}
                   alt=""
                   width={'100%'}
                   height={'100%'}

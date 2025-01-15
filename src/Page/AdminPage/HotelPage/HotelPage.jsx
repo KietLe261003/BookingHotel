@@ -4,6 +4,8 @@ import { Link } from "react-router-dom";
 import RouterLinkAdmin from "../../../Until/RouterLinkAdmin";
 import { hotelServices } from "../../../Service/HotelService";
 import DeleteHotelForm from "./Components/DeleteHotelForm";
+import CreateHotelForm from "./Components/CreateHotelForm";
+import UpdateHotelForm from "./Components/UpdateHotelForm";
 const HotelPage = () => {
   const [selectedHotelId, setSelectedHotelId] = useState(null);
   const columns = [
@@ -79,6 +81,17 @@ const HotelPage = () => {
               setSelectedHotelId(record.hotelId); // Cập nhật userId khi click
             }}
           >
+            <UpdateHotelForm
+              getAllHotel={getAllHotel}
+              hotelId={selectedHotelId}
+            />
+          </a>
+          <Divider type="vertical" />
+          <a
+            onClick={() => {
+              setSelectedHotelId(record.hotelId); // Cập nhật userId khi click
+            }}
+          >
             <DeleteHotelForm
               getAllHotel={getAllHotel}
               hotelId={selectedHotelId}
@@ -102,6 +115,7 @@ const HotelPage = () => {
   }, []);
   return (
     <>
+      <CreateHotelForm getAllHotels={getAllHotel}></CreateHotelForm>
       <Table columns={columns} dataSource={listData}></Table>
     </>
   );

@@ -3,11 +3,20 @@ import { Table, Divider, Tag } from "antd";
 import { bookingService } from "../../../Service/BookingService";
 import { roomService } from "../../../Service/RoomService";
 import UpdateBookingForm from "./Components/UpdateBookingForm";
+import DeleteBookingForm from "./Components/DeleteBookingForm";
 
 const BookingPage = () => {
   const [listData, setListData] = useState([]);
   const [selectedBookingId, setSelectedBookingId] = useState(null);
   const columns = [
+    {
+      title: "Id",
+      dataIndex: "bookingId",
+      key: "bookingId",
+      render: (text)=>(
+        <strong>{text}</strong>
+      )
+    },
     {
       title: "Name",
       dataIndex: "name",
@@ -75,13 +84,19 @@ const BookingPage = () => {
         <span>
           <a
             onClick={() => {
-              setSelectedBookingId(record); // Cập nhật userId khi click
+              setSelectedBookingId(record); // Cập nhật Booking khi click
             }}
           >
             <UpdateBookingForm getAll={getAllBooking} booking={selectedBookingId}/>
           </a>
           <Divider type="vertical" />
-          <a>Delete</a>
+          <a
+            onClick={() => {
+              setSelectedBookingId(record); // Cập nhật Booking khi click
+            }}
+          >
+            <DeleteBookingForm getAll={getAllBooking} booking={selectedBookingId}/>
+          </a>
         </span>
       ),
     },

@@ -12,5 +12,9 @@ export const bookingService = {
     updateBooking: async(id,data)=>{
         const res= await request.put(`/hotelservice/booking/${id}`,data);
         return res.data;
+    },
+    deleteBooking: async(id)=>{
+        const res= await request.delete(`/hotelservice/booking/${id}`);
+        return res.data;
     }
 }

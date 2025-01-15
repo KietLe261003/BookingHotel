@@ -3,9 +3,9 @@ import View360Component from "../../../Components/View360Component";
 import { useNavigate, useParams } from "react-router-dom";
 import { hotelServices } from "../../../Service/HotelService";
 import { Pannellum } from "pannellum-react";
+const URL_IMAGE=import.meta.env.VITE_IMAGE_URL;
 const View360Page = () => {
   const { id } = useParams();
-  const navigate = useNavigate();
   const [hotel, setHotel] = useState(null);
   const getHotelById = async () => {
     try {
@@ -28,7 +28,8 @@ const View360Page = () => {
                 width={"100%"}
                 height={"700px"}
                 image={
-                    hotel?.imageUrls[0]
+                  // "https://l13.alamy.com/360/T8X354/minsk-belarus-august-2017-full-seamless-spherical-panorama-360-degrees-in-interior-computer-room-and-library-for-clients-in-elite-hotel-360-pan-T8X354.jpg"
+                  URL_IMAGE+hotel?.imageUrls[0]
                 }
                 pitch={10}
                 yaw={180}

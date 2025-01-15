@@ -32,7 +32,8 @@ export const AuthContextProvider = ({ children }) => {
   };
   const checkToken = async()=>{
     try {
-      const res = UserService.checkToken(token);
+      const res = await UserService.checkToken(token);
+      
       if(res.data==false)
       {
         logout();

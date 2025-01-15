@@ -9,6 +9,7 @@ import RouterLink from "@/Until/RouterLink";
 import { useEffect, useState } from "react";
 import { hotelServices } from '@/Service/HotelService';
 import { renderName } from '../Until/RenderName';
+const URL_IMAGE=import.meta.env.VITE_IMAGE_URL;
 const TourPackages = () => {
     const [packages,setPackages]=useState([]);
     const getAllHotel = async () => {
@@ -35,7 +36,7 @@ const TourPackages = () => {
                     {packages.map((pkg, index) => (
                         <div key={index} className="col-lg-4 col-md-6 mb-4">
                             <div className="package-item bg-white mb-2">
-                                <img className="img-fluid" src={pkg.imageUrls[0]} alt="" />
+                                <img className="img-fluid h-[200px] min-h-[200px] max-h-[200px]" src={URL_IMAGE+pkg.imageUrls[0]} alt="" />
                                 <div className="p-4">
                                     <div className="d-flex justify-content-between mb-3">
                                         <small className="m-0"><i className="fa fa-map-marker-alt text-primary mr-2"></i>{pkg.city}</small>
