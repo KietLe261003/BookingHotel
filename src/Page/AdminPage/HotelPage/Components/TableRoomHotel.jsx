@@ -2,7 +2,7 @@ import { Divider, Table, Tag } from "antd";
 import React from "react";
 import CreateRoomForm from "./CreateRoomForm";
 
-const TableRoomHotel = () => {
+const TableRoomHotel = ({hotelId}) => {
   const data = [
     {
       _id: "677794363a06cb1143a33d57",

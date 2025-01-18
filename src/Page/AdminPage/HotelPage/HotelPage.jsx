@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from "react";
-import { Table, Divider, Tag } from "antd";
+import { useEffect, useState } from "react";
+import { Table, Divider, Tag, notification } from "antd";
 import { Link } from "react-router-dom";
 import RouterLinkAdmin from "../../../Until/RouterLinkAdmin";
 import { hotelServices } from "../../../Service/HotelService";
@@ -74,7 +74,7 @@ const HotelPage = () => {
       key: "action",
       render: (text, record) => (
         <span>
-          <Link to={`${record.key}`}>Detail</Link>
+          <Link to={`${record.hotelId}`}>Detail</Link>
           <Divider type="vertical" />
           <a
             onClick={() => {
@@ -107,6 +107,7 @@ const HotelPage = () => {
       const res = await hotelServices.getAllHotel();
       setListData(res.data);
     } catch (error) {
+      console.log(error);
       notification.error({ message: "Lỗi lấy toàn bộ hotel" });
     }
   };
