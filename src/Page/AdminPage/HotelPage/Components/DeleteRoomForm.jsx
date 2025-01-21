@@ -1,3 +1,4 @@
+import React from "react";
 import {
   Modal,
   ModalOverlay,
@@ -10,17 +11,17 @@ import {
   useDisclosure,
 } from "@chakra-ui/react";
 import { notification } from "antd";
-import { hotelServices } from "../../../../Service/HotelService";
-const DeleteHotelForm = ({ getAllHotel, hotelId }) => {
+import { roomService } from "../../../../Service/RoomService";
+const DeleteRoomForm = ({selectRoom,getAll}) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const deleteHotel = async () => {
+  const deleteRoom = async () => {
     try {
-      await hotelServices.deleteHotel(hotelId);
-      getAllHotel();
+      await roomService.deleteRoom(selectRoom.roomId);
+      getAll();
       onClose();
-      notification.success({ message: "Xóa khách sạn thành công" });
+      notification.success({ message: "Xóa phòng thành công" });
     } catch (error) {
-      notification.error({ message: "Xóa khách sạn thất bại" });
+      notification.error({ message: "Xóa phòng thất bại" });
     }
   };
   return (
@@ -29,10 +30,14 @@ const DeleteHotelForm = ({ getAllHotel, hotelId }) => {
       <Modal onClose={onClose} isOpen={isOpen} size={"3xl"} isCentered>
         <ModalOverlay />
         <ModalContent>
-          {hotelId && <ModalHeader>Có chắc muốn xóa khách sạn {hotelId} không ?</ModalHeader>}
+          {selectRoom && (
+            <ModalHeader>
+              Có chắc muốn xóa phòng {selectRoom.roomName} không ?
+            </ModalHeader>
+          )}
           <ModalCloseButton />
           <ModalFooter>
-            <Button onClick={deleteHotel} colorScheme="blue" mr={3}>
+            <Button onClick={deleteRoom} colorScheme="blue" mr={3}>
               Có
             </Button>
             <Button onClick={onClose}>Không</Button>
@@ -43,4 +48,4 @@ const DeleteHotelForm = ({ getAllHotel, hotelId }) => {
   );
 };
 
-export default DeleteHotelForm;
+export default DeleteRoomForm;

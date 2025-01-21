@@ -1,41 +1,22 @@
-import { Divider, Table, Tag } from "antd";
-import React from "react";
+import { Divider, notification, Table, Tag } from "antd";
+import React, { useEffect, useState } from "react";
 import CreateRoomForm from "./CreateRoomForm";
-
+import { hotelServices } from "../../../../Service/HotelService";
+import UpdateRoomForm from "./UpdateRoomForm";
+import DeleteRoomForm from "./DeleteRoomForm";
 const TableRoomHotel = ({hotelId}) => {
-  const data = [
-    {
-      _id: "677794363a06cb1143a33d57",
-      roomName: "Phòng tiêu chuẩn",
-      roomType: "Standard",
-      pricePerNight: 500000,
-      pricePerHour: 80000,
-      EmptyRoom: 50,
-      availability: true,
-      status: "Active",
-    },
-    {
-      _id: "677794363a06cb1143a33d57",
-      roomName: "Phòng tiêu chuẩn",
-      roomType: "Standard",
-      pricePerNight: 500000,
-      pricePerHour: 80000,
-      EmptyRoom: 50,
-      availability: true,
-      status: "Active",
-    },
-    {
-      _id: "677794363a06cb1143a33d57",
-      roomName: "Phòng tiêu chuẩn",
-      roomType: "Standard",
-      pricePerNight: 500000,
-      pricePerHour: 80000,
-      EmptyRoom: 50,
-      availability: true,
-      status: "Active",
-    },
-  ];
-
+  const [selectRoom,setSelectRoom]=useState(null);
+  const [rooms,setRooms]=useState([]);
+  const getAllRoom = async ()=>{
+      try {
+        const res = await hotelServices.getRoomByHotelId(hotelId);
+        console.log(res.data);
+        setRooms(res?.data);
+      } catch (error) {
+        notification.error({message: "Lỗi lấy dữ liệu"})
+        console.log("Lỗi: ",error);
+      }
+    }
   const columns = [
     {
       title: "Room Name",
@@ -56,7 +37,7 @@ const TableRoomHotel = ({hotelId}) => {
     },
     {
       title: "Empty Room",
-      dataIndex: "EmptyRoom",
+      dataIndex: "emptyRoom",
       key: "EmptyRoom",
     },
     {
@@ -84,17 +65,26 @@ const TableRoomHotel = ({hotelId}) => {
         <span>
           <a>View</a>
           <Divider type="vertical" />
-          <a>Edit</a>
+          <a onClick={()=>{setSelectRoom(record)}}>
+            <UpdateRoomForm selectRoom={selectRoom} getAll={getAllRoom}></UpdateRoomForm>
+          </a>
+          <Divider type="vertical" />
+          <a onClick={()=>{setSelectRoom(record)}}>
+            <DeleteRoomForm selectRoom={selectRoom} getAll={getAllRoom}></DeleteRoomForm>
+          </a>
         </span>
       ),
     },
   ];
-
+  useEffect(()=>{
+    if(hotelId)
+    getAllRoom();
+  },[hotelId]);
   return (
     <div className="bg-white p-5 rounded-xl mb-5">
       <h2 className="mb-5">Room</h2>
-      <CreateRoomForm></CreateRoomForm>
-      <Table columns={columns} dataSource={data} rowKey="_id" />
+      <CreateRoomForm hotelId={hotelId} getAll={getAllRoom}></CreateRoomForm>
+      <Table columns={columns} dataSource={rooms} rowKey="_id" />
     </div>
   );
 };

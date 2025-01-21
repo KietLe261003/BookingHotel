@@ -237,7 +237,7 @@ const UpdateHotelForm = ({ getAllHotel, hotelId }) => {
                     Thêm
                   </Button>
                 </div>
-                
+
                 <div className="mt-2">
                   {formik.values.amenities.map((amenity, index) => (
                     <div
@@ -263,26 +263,26 @@ const UpdateHotelForm = ({ getAllHotel, hotelId }) => {
                 </div>
               </div>
               <div className="mb-3">
-                    <label
-                      htmlFor="status"
-                      className="block text-gray-700 font-medium mb-2"
-                    >
-                      Status
-                    </label>
-                    <select
-                      id="status"
-                      name="status"
-                      className="border border-gray-400 p-2 w-full rounded-lg focus:outline-none focus:border-blue-400"
-                      {...formik.getFieldProps("status")}
-                      required
-                    >
-                      <option value="">Select Status</option>
-                      <option value="Active">Active</option>
-                      <option value="Inactive">Inactive</option>
-                      <option value="Banned">Banned</option>
-                      <option value="Pending">Pending</option>
-                    </select>
-                  </div>
+                <label
+                  htmlFor="status"
+                  className="block text-gray-700 font-medium mb-2"
+                >
+                  Status
+                </label>
+                <select
+                  id="status"
+                  name="status"
+                  className="border border-gray-400 p-2 w-full rounded-lg focus:outline-none focus:border-blue-400"
+                  {...formik.getFieldProps("status")}
+                  required
+                >
+                  <option value="">Select Status</option>
+                  <option value="Active">Active</option>
+                  <option value="Inactive">Inactive</option>
+                  <option value="Banned">Banned</option>
+                  <option value="Pending">Pending</option>
+                </select>
+              </div>
               <div className="mb-3">
                 <label
                   htmlFor="imageUrls"

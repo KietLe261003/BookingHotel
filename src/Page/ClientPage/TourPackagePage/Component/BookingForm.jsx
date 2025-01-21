@@ -15,6 +15,7 @@ import { useFormik } from "formik";
 import { renderPrice } from "../../../../Until/RenderPrice";
 import { bookingService } from "../../../../Service/BookingService";
 import { useNavigate } from "react-router-dom";
+import { UserService } from "../../../../Service/UserService";
 const BookingForm = ({ room }) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const navigate = useNavigate();
@@ -53,7 +54,10 @@ const BookingForm = ({ room }) => {
   });
   const createBooking = async(data)=>{
     try {
-      const res = await bookingService.createBooking(data);
+      const userInfo=await UserService.findUserByToken();
+      const dataRequest={...data,userId: userInfo.data.userId || 1};
+      //console.log(dataRequest);
+      const res = await bookingService.createBooking(dataRequest);
       window.location.href=res?.data;
     } catch (error) {
       alert("Đăng ký thất bại");

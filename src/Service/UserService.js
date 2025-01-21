@@ -1,6 +1,6 @@
 import axios from "axios";
 import { request } from "../Comomon/Config/Request"
-
+const USER_TOKEN=import.meta.env.VITE_USER_TOKEN;
 export const UserService={
     login: async(loginData)=>{   
         const res=await request.post("/userservice/auth",loginData);
@@ -31,6 +31,11 @@ export const UserService={
     },
     deleteUser: async(id)=>{
         const res = await request.delete(`/userservice/${id}`);
+        return res.data;
+    },
+    findUserByToken: async()=>{
+        const storeToken = localStorage.getItem(USER_TOKEN);
+        const res = await request.get(`/userservice/findbytoken/${storeToken}`);
         return res.data;
     }
 }
