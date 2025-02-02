@@ -20,5 +20,13 @@ export const blogService = {
   createComment: async(blogId,data)=>{
     const res = await request.post(`/blogservice/addComment/${blogId}`,data);
     return res.data;
+  },
+  getCommentByIdBlog: async(blogId)=>{
+    const res= await request.get(`/blogservice/getcomment/${blogId}`);
+    return res.data;
+  },
+  deleteBlog: async(blogId)=>{
+    const res= await request.delete(`/blogservice/${blogId}`);
+    return res.data;
   }
 };

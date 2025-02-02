@@ -4,7 +4,8 @@ const RouterLinkAdmin = {
     Account: "account",
     Hotel: "hotel",
     Booking: "booking",
-    HotelDetail: "hotel/:id"
+    HotelDetail: "hotel/:id",
+    BlogPage: "blog"
 };
 
 export default RouterLinkAdmin;

@@ -10,6 +10,7 @@ const URL_IMAGE = import.meta.env.VITE_IMAGE_URL;
 const DetailBlogPage = () => {
   const { id } = useParams();
   const [blog, setBlog] = useState(null);
+  const [refeshComment,setRefeshComment]=useState(0);
   const getBlogById = async () => {
     try {
       const res = await blogService.findBlogById(id);
@@ -44,9 +45,9 @@ const DetailBlogPage = () => {
               {/* Blog Detail End */}
 
               {/* Comment List Start */}
-              <ListComment></ListComment>
+              <ListComment blogId={id} refeshComment={refeshComment}></ListComment>
 
-              <CreateComment blogId={blog.blogId}></CreateComment>
+              <CreateComment blogId={blog.blogId} setRefeshComment={setRefeshComment}></CreateComment>
             </div>
             <RightSectionDetail blog={blog}></RightSectionDetail>
           </div>

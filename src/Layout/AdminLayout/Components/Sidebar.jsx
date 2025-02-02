@@ -8,6 +8,7 @@ const Sidebar = () => {
     { icon: <IconAccount/>, label: "Account", link: RouterLinkAdmin.Account},
     { icon: <IconHotel/>, label: "Hotel", link: RouterLinkAdmin.Hotel },
     { icon: <IconBooking/>, label: "Booking", link: RouterLinkAdmin.Booking },
+    { icon: <IconBooking/>, label: "Blog", link: RouterLinkAdmin.BlogPage },
   ];
 
   const menuItems2 = [

@@ -24,7 +24,6 @@ const BlogPage = () => {
           };
         })
       );
-      console.log(processedBlogs);
       setBlogs(processedBlogs);
     } catch (error) {
       notification.error({ message: "Lỗi lấy dữ liệu blogs" });

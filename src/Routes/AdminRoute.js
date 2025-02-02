@@ -1,3 +1,4 @@
+import BlogPageAdmin from "../Page/AdminPage/BlogPage/BlogPageAdmin";
 import BookingPage from "../Page/AdminPage/BookingPage/BookingPage";
 import HomeAdminPage from "../Page/AdminPage/HomeAdminPage/HomeAdminPage";
 import DetailHotelPage from "../Page/AdminPage/HotelPage/DetailHotelPage";
@@ -26,6 +27,9 @@ export const adminRoute=[
         path: RouterLinkAdmin.HotelDetail,
         element: DetailHotelPage
     },
-
+    {
+        path: RouterLinkAdmin.BlogPage,
+        element: BlogPageAdmin
+    }
     
 ]

@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { UserService } from "../Service/UserService";
 import { blogService } from "../Service/BlogService";
 
-const CreateComment = ({blogId}) => {
+const CreateComment = ({blogId,setRefeshComment}) => {
   const [contentComment,setContentComment]=useState("");
   const submitComment = async()=>{
     try {
@@ -13,6 +13,7 @@ const CreateComment = ({blogId}) => {
         content: contentComment
       }
       await blogService.createComment(blogId,data);
+      setRefeshComment(prev=>prev+1);
       notification.success({message: "Thêm bình luận thành công"})
       setContentComment("");
     } catch (error) {
