@@ -48,7 +48,7 @@ const CreateBlog = ({getAll}) => {
     },
   });
   return (
-    <div className="flex justify-end">
+    <div className="flex justify-start mb-3">
       <Button colorScheme="teal" onClick={onOpen}>
         Đăng bài viết
       </Button>
@@ -76,7 +76,7 @@ const CreateBlog = ({getAll}) => {
               </div>
               <div className="mb-3">
                 <label htmlFor="name" className="block text-base font-medium">
-                  Hotel amenities (Tiện tích)
+                  Chủ đề 
                 </label>
                 <div className="flex gap-3">
                   <input

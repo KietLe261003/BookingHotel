@@ -5,6 +5,7 @@ import DefaultLayout from "./Layout/DefaultLayout/DefaultLayout";
 import { useEffect } from "react";
 import { adminRoute } from "./Routes/AdminRoute";
 import AdminLayout from "./Layout/AdminLayout/AdminLayout";
+import PrivateRoute from "./Routes/PrivateRoute";
 function App() {
   const { pathname } = useLocation();
   useEffect(() => {
@@ -23,7 +24,7 @@ function App() {
           );
         })}
       </Route>
-      <Route path="/admin" element={<AdminLayout/>}>
+      <Route path="/admin" element={<PrivateRoute><AdminLayout/></PrivateRoute>}>
         {adminRoute.map((route, index) => {
           return (
             <Route

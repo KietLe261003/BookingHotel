@@ -28,5 +28,17 @@ export const blogService = {
   deleteBlog: async(blogId)=>{
     const res= await request.delete(`/blogservice/${blogId}`);
     return res.data;
+  },
+  deleteComment: async(blogId,commentId)=>{
+    const dataRequest = {
+      blogId: blogId,
+      commentId: commentId
+    }
+    const res = await request.post('/blogservice/deleteComment',dataRequest);
+    return res.data;
+  },
+  updateComment: async(data)=>{
+    const res = await request.put('/blogservice/updatecomment',data);
+    return res.data;
   }
 };

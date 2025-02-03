@@ -1,4 +1,4 @@
-import { IconAccount, IconBooking, IconDashBoard, IconHotel, IconLogout, IconProfile, IconSetting } from "../../../Comomon/Icons/IconSlideBarAdmin";
+import { IconAccount, IconBlog, IconBooking, IconDashBoard, IconHotel, IconLogout, IconProfile, IconSetting } from "../../../Comomon/Icons/IconSlideBarAdmin";
 import RouterLinkAdmin from "../../../Until/RouterLinkAdmin";
 import MenuCard from "./MenuCard";
 
@@ -8,7 +8,7 @@ const Sidebar = () => {
     { icon: <IconAccount/>, label: "Account", link: RouterLinkAdmin.Account},
     { icon: <IconHotel/>, label: "Hotel", link: RouterLinkAdmin.Hotel },
     { icon: <IconBooking/>, label: "Booking", link: RouterLinkAdmin.Booking },
-    { icon: <IconBooking/>, label: "Blog", link: RouterLinkAdmin.BlogPage },
+    { icon: <IconBlog/>, label: "Blog", link: RouterLinkAdmin.BlogPage },
   ];
 
   const menuItems2 = [
